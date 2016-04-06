@@ -2,7 +2,6 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import reducer from '../reducers/index';
 
-
 export default function configureStore(initialState) {
   const store = createStore(reducer, initialState, compose(
       applyMiddleware(thunk),
@@ -12,7 +11,6 @@ export default function configureStore(initialState) {
 }
 
 // var storeStructure = {
-//   rejectedRestaurants: [], // ids of rejected locations
 //   currentLocation: {
 //      geolocation_support: null
 //      isFetching: null,

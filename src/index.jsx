@@ -22,7 +22,6 @@ $script(['https://maps.googleapis.com/maps/api/js?key=' + GOOGLE_API_KEY + '&lib
 
 
 const store = configureStore({
-  rejectedRestaurants: [],
   currentLocation: {
     geolocation_support: null,
     isFetching: null,

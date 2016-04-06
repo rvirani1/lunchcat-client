@@ -30,6 +30,7 @@ export function currentRestaurant(state = initialState, action) {
       newState.error = action.status;
       newState.locationDetails = {};
       return Object.assign({}, state, newState);
+    case 'CLEAR_RESTAURANT':
     case 'CLEAR_CURRENT':
       return Object.assign({}, state, initialState);
   }
