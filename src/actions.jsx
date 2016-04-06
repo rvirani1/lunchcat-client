@@ -75,7 +75,7 @@ export function updateRestaurant(lat, long) {
       var user_loc = new google.maps.LatLng(lat, long);
       var request = {
         location: user_loc,
-        radius: '2000',
+        radius: '800',
         types: ['restaurant']
       };
       var map = new google.maps.Map(document.getElementById('hidden'), {});
