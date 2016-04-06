@@ -8,7 +8,7 @@ import {AppContainer} from './containers/App';
 import {ResultContainer} from './containers/Result';
 import {GetLocationContainer} from './containers/GetLocation';
 import NoMatch from './containers/NoMatch';
-import { clearCurrent } from './actions';
+import { clearCurrent } from './actions/currentActions';
 
 // Assets
 require('../node_modules/font-awesome/css/font-awesome.min.css');

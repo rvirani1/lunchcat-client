@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {IndexLink} from 'react-router';
-import * as actionCreators from '../actions';
+import {updateRestaurantDetails} from '../actions/restaurantActions';
 
 import Map from './../components/Result/Map';
 
@@ -22,7 +22,7 @@ export const Result = React.createClass({
       return (
         <div className="result">
           <Map place_id={this.props.place_id}></Map>
-          <IndexLink to="/" onClick={this.props.clearRestaurant}>Back</IndexLink>
+          <IndexLink to="/">Back</IndexLink>
         </div>);
     } else {
       return (<div>Retreiving Data</div>);
@@ -41,4 +41,10 @@ function mapStateToProps(state) {
   };
 }
 
-export const ResultContainer = connect(mapStateToProps, actionCreators)(Result);
+function mapDispatchToProps() {
+  return {
+    updateRestaurantDetails: updateRestaurantDetails
+  }
+}
+
+export const ResultContainer = connect(mapStateToProps, mapDispatchToProps())(Result);

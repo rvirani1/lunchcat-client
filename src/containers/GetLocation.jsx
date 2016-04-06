@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
-import * as actionCreators from '../actions';
+import {updateLocation, updateGeolocationSupport} from '../actions/locationActions';
 
 import NoSupport from './../components/GetLocation/NoSupport';
 import LocationStatus from './../components/GetLocation/LocationStatus';
@@ -43,19 +43,6 @@ export const GetLocation = React.createClass({
   }
 });
 
-// if (this.props.isFetchingLocation) {
-//   return <p>Acquiring Location</p>
-// } else if (this.props.latitude && this.props.longitude) {
-//   if (this.props.locationDetails) {
-//     return <p>Found Restaurant</p>;
-//   } else if (this.props.restaurantError) {
-//     return <p>Restaurant Error</p>;
-//   } else {
-//     return <p>Finding Restaurants</p>;
-//   }
-// } else if (this.props.locationError) {
-//   return <p>Error: {this.props.locationError}</p>
-
 function mapStateToProps(state) {
   return {
     geolocation_support: state.currentLocation.geolocation_support,
@@ -69,4 +56,11 @@ function mapStateToProps(state) {
   };
 }
 
-export const GetLocationContainer = connect(mapStateToProps, actionCreators)(GetLocation);
+function mapDispatchToProps() {
+  return {
+    updateLocation: updateLocation,
+    updateGeolocationSupport: updateGeolocationSupport
+  }
+}
+
+export const GetLocationContainer = connect(mapStateToProps, mapDispatchToProps())(GetLocation);
