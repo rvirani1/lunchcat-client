@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
+import {IndexLink} from 'react-router';
 import * as actionCreators from '../actions';
 
 import Map from './Result/Map';
@@ -22,7 +22,7 @@ export const Result = React.createClass({
       return (
         <div className="result">
           <Map place_id={this.props.place_id}></Map>
-          <Link to={`/`}>Back</Link>
+          <IndexLink to="/" onClick={this.props.clearRestaurant}>Back</IndexLink>
         </div>);
     } else {
       return (<div>Retreiving Data</div>);

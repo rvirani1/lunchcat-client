@@ -33,6 +33,8 @@ export function currentLocation(state = initialState, action) {
       newState.longitude = null;
       newState.error = action.msg;
       return Object.assign({}, state, newState);
+    case 'CLEAR_CURRENT':
+      return Object.assign({}, state, initialState);
   }
   return state;
 }

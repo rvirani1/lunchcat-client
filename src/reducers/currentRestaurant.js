@@ -6,7 +6,6 @@ const initialState = {
 
 export function currentRestaurant(state = initialState, action) {
   switch (action.type) {
-    case 'REQUEST_RESTAURANT_DETAILS':
     case 'REQUEST_RESTAURANT':
       var newState = Object.assign({}, state);
       newState.isFetching = true;
@@ -31,6 +30,8 @@ export function currentRestaurant(state = initialState, action) {
       newState.error = action.status;
       newState.locationDetails = {};
       return Object.assign({}, state, newState);
+    case 'CLEAR_CURRENT':
+      return Object.assign({}, state, initialState);
   }
   return state;
 }

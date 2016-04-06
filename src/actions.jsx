@@ -10,7 +10,7 @@ export const RECEIVE_LOCATION_ERROR = 'RECEIVE_LOCATION_ERROR';
 export const REQUEST_RESTAURANT = 'REQUEST_RESTAURANT';
 export const RECEIVE_RESTAURANT = 'RECEIVE_RESTAURANT';
 export const RECEIVE_RESTAURANT_ERROR = 'RECEIVE_RESTAURANT_ERROR';
-export const REQUEST_RESTAURANT_DETAILS = 'REQUEST_RESTAURANT_DETAILS';
+export const CLEAR_CURRENT = 'CLEAR_CURRENT';
 
 export function updateGeolocationSupport() {
   // TODO: Refactor logic below
@@ -118,7 +118,7 @@ export function receiveRestaurantError(status) {
 
 export function updateRestaurantDetails(place_id) {
   return function(dispatch) {
-    dispatch(requestRestaurantDetails());
+    dispatch(requestRestaurant());
 
     var request = {
       placeId: place_id
@@ -138,9 +138,9 @@ export function updateRestaurantDetails(place_id) {
   }
 }
 
-export function requestRestaurantDetails() {
+export function clearCurrent() {
   return {
-    type: REQUEST_RESTAURANT_DETAILS
+    type: CLEAR_CURRENT
   }
 }
 
