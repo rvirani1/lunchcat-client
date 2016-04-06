@@ -8,7 +8,7 @@ import {AppContainer} from './containers/App';
 import {ResultContainer} from './containers/Result';
 import {GetLocationContainer} from './containers/GetLocation';
 import NoMatch from './containers/NoMatch';
-import { clearCurrent } from './actions/currentActions';
+import {clearCurrent} from './actions/currentActions';
 
 // Assets
 require('../node_modules/font-awesome/css/font-awesome.min.css');
@@ -37,13 +37,13 @@ const store = configureStore({
   }
 });
 
-function goToIndex(_nextState, _replace) {
+export function clearCurrentHook(_nextState, _replace) {
   store.dispatch(clearCurrent())
 }
 
 const routes =
   <Route path="/" component={AppContainer}>
-    <IndexRoute component={GetLocationContainer} onEnter={goToIndex}/>
+    <IndexRoute component={GetLocationContainer} onEnter={clearCurrentHook}/>
     <Route path="/result/:place_id" component={ResultContainer} />
     <Route path="*" component={NoMatch}/>
   </Route>;
