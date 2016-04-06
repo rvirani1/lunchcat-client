@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import * as actionCreators from '../actions';
 
-import NoSupport from './GetLocation/NoSupport';
-import LocationStatus from './GetLocation/LocationStatus';
-import RestaurantStatus from './GetLocation/RestaurantStatus';
-import GetLocationButton from './GetLocation/GetLocationButton';
+import NoSupport from './../components/GetLocation/NoSupport';
+import LocationStatus from './../components/GetLocation/LocationStatus';
+import RestaurantStatus from './../components/GetLocation/RestaurantStatus';
+import GetLocationButton from './../components/GetLocation/GetLocationButton';
 
 export const GetLocation = React.createClass({
   componentWillMount: function() {

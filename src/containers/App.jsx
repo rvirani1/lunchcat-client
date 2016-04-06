@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as actionCreators from '../actions';
 
 export const App = React.createClass({
   render: function() {
@@ -12,4 +11,4 @@ function mapStateToProps(state) {
   return state;
 }
 
-export const AppContainer = connect(mapStateToProps, actionCreators)(App);
+export const AppContainer = connect(mapStateToProps)(App);

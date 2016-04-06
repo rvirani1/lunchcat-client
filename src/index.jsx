@@ -4,10 +4,10 @@ import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import configureStore from './store/configureStore';
-import {AppContainer} from './components/App';
-import {ResultContainer} from './components/Result';
-import {GetLocationContainer} from './components/GetLocation';
-import NoMatch from './components/NoMatch';
+import {AppContainer} from './containers/App';
+import {ResultContainer} from './containers/Result';
+import {GetLocationContainer} from './containers/GetLocation';
+import NoMatch from './containers/NoMatch';
 import { clearCurrent } from './actions';
 
 // Assets

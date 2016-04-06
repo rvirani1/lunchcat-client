@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {IndexLink} from 'react-router';
 import * as actionCreators from '../actions';
 
-import Map from './Result/Map';
+import Map from './../components/Result/Map';
 
 export const Result = React.createClass({
   haveMatchingLocation: function() {
