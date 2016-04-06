@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
+import {syncHistoryWithStore} from 'react-router-redux';
 import configureStore from './store/configureStore';
 import {AppContainer} from './containers/App';
 import {ResultContainer} from './containers/Result';
@@ -48,9 +49,11 @@ const routes =
     <Route path="*" component={NoMatch}/>
   </Route>;
 
+const history = syncHistoryWithStore(browserHistory, store);
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>{routes}</Router>
+    <Router history={history}>{routes}</Router>
   </Provider>,
   document.getElementById('app')
 );
