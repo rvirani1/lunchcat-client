@@ -10,6 +10,7 @@ export const RECEIVE_LOCATION_ERROR = 'RECEIVE_LOCATION_ERROR';
 export const REQUEST_RESTAURANT = 'REQUEST_RESTAURANT';
 export const RECEIVE_RESTAURANT = 'RECEIVE_RESTAURANT';
 export const RECEIVE_RESTAURANT_ERROR = 'RECEIVE_RESTAURANT_ERROR';
+export const CLEAR_RESTAURANT = 'CLEAR_RESTAURANT';
 export const CLEAR_CURRENT = 'CLEAR_CURRENT';
 
 export function updateGeolocationSupport() {
@@ -135,6 +136,12 @@ export function updateRestaurantDetails(place_id) {
         }
       })
     });
+  }
+}
+
+export function clearRestaurant() {
+  return {
+    type: CLEAR_RESTAURANT
   }
 }
 
