@@ -18,11 +18,13 @@ export default React.createClass({
       .then(this.navigateToResult);
   },
   render: function() {
-    return (<button
-      className="get-location-button"
-      onClick={this.getLocationAndRestaurant}
-      disabled={this.props.locationFound} >
-      {this.buttonContents()}
-    </button>);
+    return (<div className="get-location-button">
+      <button
+        className="center-margin"
+        onClick={this.getLocationAndRestaurant}
+        disabled={this.props.locationFound} >
+        {this.buttonContents()}
+      </button>
+    </div>);
   }
 });
