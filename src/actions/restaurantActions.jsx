@@ -8,11 +8,12 @@ export const CLEAR_RESTAURANT = 'CLEAR_RESTAURANT';
 
 
 export function updateRestaurant(lat, long) {
-  return function(dispatch) {
+  return function(dispatch, getState) {
     dispatch(requestRestaurant());
 
     $script.ready('google_loader', function() {
-      var user_loc = new google.maps.LatLng(lat, long);
+      var state = getState();
+      var user_loc = new google.maps.LatLng(state.currentLocation.latitude, state.currentLocation.longitude);
       var request = {
         location: user_loc,
         radius: '800',

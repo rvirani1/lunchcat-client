@@ -50,7 +50,7 @@ export function updateLocation() {
         // Success callback
         // update this to use promises instead
         dispatch(receiveLocation(position.coords.latitude, position.coords.longitude));
-        dispatch(updateRestaurant(position.coords.latitude, position.coords.longitude));
+        dispatch(updateRestaurant());
       },
       function(msg) {
         // Error Callback
