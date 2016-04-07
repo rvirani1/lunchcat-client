@@ -4,10 +4,12 @@ import {Link} from 'react-router';
 import {updateLocation, updateGeolocationSupport} from '../actions/locationActions';
 import {updateRestaurant} from '../actions/restaurantActions';
 
+import DefaultLayout from './../components/default_layout';
 import NoSupport from './../components/GetLocation/NoSupport';
 import LocationStatus from './../components/GetLocation/LocationStatus';
 import RestaurantStatus from './../components/GetLocation/RestaurantStatus';
 import GetLocationButton from './../components/GetLocation/GetLocationButton';
+import GetLocationBanner from './../components/GetLocation/GetLocationBanner';
 
 export const GetLocation = React.createClass({
   componentWillMount: function() {
@@ -22,23 +24,26 @@ export const GetLocation = React.createClass({
   render: function() {
     if (this.props.geolocation_support) {
       return (<div className="get-location">
-          <GetLocationButton
-            isFetching={this.isFetching()}
-            locationFound={this.locationFound()}
-            updateLocation={this.props.updateLocation}
-            updateRestaurant={this.props.updateRestaurant}
-            place_id={this.props.locationDetails.place_id}
-          />
-          <LocationStatus
-            isFetching={this.props.isFetchingLocation}
-            latitude={this.props.latitude}
-            longitude={this.props.longitude}
-            error={this.props.locationError}
-          />
-          <RestaurantStatus
-            isFetching={this.props.isFetchingRestaurant}
-            error={this.props.restaurantError}
-          />
+          <DefaultLayout>
+            <GetLocationBanner />
+            <GetLocationButton
+              isFetching={this.isFetching()}
+              locationFound={this.locationFound()}
+              updateLocation={this.props.updateLocation}
+              updateRestaurant={this.props.updateRestaurant}
+              place_id={this.props.locationDetails.place_id}
+            />
+            <LocationStatus
+              isFetching={this.props.isFetchingLocation}
+              latitude={this.props.latitude}
+              longitude={this.props.longitude}
+              error={this.props.locationError}
+            />
+            <RestaurantStatus
+              isFetching={this.props.isFetchingRestaurant}
+              error={this.props.restaurantError}
+            />
+          </DefaultLayout>
         </div>)
     } else {
       return <NoSupport></NoSupport>
