@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {updateLocation, updateGeolocationSupport} from '../actions/locationActions';
+import {updateRestaurant} from '../actions/restaurantActions';
 
 import NoSupport from './../components/GetLocation/NoSupport';
 import LocationStatus from './../components/GetLocation/LocationStatus';
@@ -25,6 +26,8 @@ export const GetLocation = React.createClass({
             isFetching={this.isFetching()}
             locationFound={this.locationFound()}
             updateLocation={this.props.updateLocation}
+            updateRestaurant={this.props.updateRestaurant}
+            place_id={this.props.locationDetails.place_id}
           />
           <LocationStatus
             isFetching={this.props.isFetchingLocation}
@@ -59,6 +62,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps() {
   return {
     updateLocation: updateLocation,
+    updateRestaurant: updateRestaurant,
     updateGeolocationSupport: updateGeolocationSupport
   }
 }

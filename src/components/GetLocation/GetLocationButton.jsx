@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 export default React.createClass({
   buttonContents: function() {
@@ -8,12 +9,19 @@ export default React.createClass({
       return <p>Get Location</p>
     }
   },
+  navigateToResult: function() {
+    browserHistory.push('/result/' + this.props.place_id);
+  },
+  getLocationAndRestaurant: function() {
+    window.athing = this.props.updateLocation()
+      .then(this.props.updateRestaurant)
+      .then(this.navigateToResult);
+  },
   render: function() {
     return (<button
       className="get-location-button"
-      onClick={this.props.updateLocation}
-      disabled={this.props.locationFound}
-    >
+      onClick={this.getLocationAndRestaurant}
+      disabled={this.props.locationFound} >
       {this.buttonContents()}
     </button>);
   }

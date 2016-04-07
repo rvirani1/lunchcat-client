@@ -42,20 +42,19 @@ export function receiveLocationError(msg) {
   }
 }
 
+function getUserPosition() {
+  return new Promise(function(resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+}
+
 export function updateLocation() {
   return function(dispatch) {
     dispatch(requestLocation());
-    navigator.geolocation.getCurrentPosition(
-      function(position) {
-        // Success callback
-        // update this to use promises instead
-        dispatch(receiveLocation(position.coords.latitude, position.coords.longitude));
-        dispatch(updateRestaurant());
-      },
-      function(msg) {
-        // Error Callback
-        dispatch(receiveLocationError(msg.message));
-      }
-    );
+    return getUserPosition().then(function(position) {
+      dispatch(receiveLocation(position.coords.latitude, position.coords.longitude));
+    }, function(error) {
+      dispatch(receiveLocationError(error.message));
+    });
   };
 }
