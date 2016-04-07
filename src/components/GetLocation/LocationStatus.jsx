@@ -1,15 +1,20 @@
 import React from 'react';
 
 export default React.createClass({
-  render: function() {
+  status: function() {
     if (this.props.isFetching) {
-      return <p>Acquiring Location</p>;
+      return "Acquiring Location";
     } else if (this.props.latitude && this.props.longitude) {
-      return <p>Found Location</p>;
+      return "Found Location";
     } else if (this.props.error) {
-      return <p>Location Error: {this.props.error}</p>;
+      return "Location Error: " + this.props.error;
     } else {
-      return <p></p>
+      return "";
     }
+  },
+render: function() {
+    return (<div className="location-status">
+      <p className="center-text">{this.status()}</p>
+    </div>)
   }
 });

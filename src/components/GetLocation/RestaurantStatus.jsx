@@ -1,14 +1,18 @@
 import React from 'react';
-import $ from 'jquery';
 
 export default React.createClass({
-  render: function() {
+  status: function() {
     if (this.props.error) {
-      return <p>Restaurant Error: {this.props.error}</p>;
+      return "Restaurant Error: " + this.props.error;
     } else if (this.props.isFetching) {
-      return <p>Finding Restaurants</p>;
+      return "Finding Restaurants";
     } else {
-      return <p></p>
+      return "";
     }
+  },
+  render: function() {
+    return (<div className="restaurant-status">
+      <p className="center-text">{this.status()}</p>
+    </div>)
   }
 });
