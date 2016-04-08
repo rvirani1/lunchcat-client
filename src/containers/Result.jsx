@@ -1,34 +1,50 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {IndexLink} from 'react-router';
 import {updateRestaurantDetails} from '../actions/restaurantActions';
 
-import Map from './../components/Result/Map';
+import DefaultLayout from './../components/DefaultLayout'
+import ResultDetails from './../components/Result/ResultDetails';
+import ResultSpinner from './../components/Result/ResultSpinner';
 
-export const Result = React.createClass({
-  haveMatchingLocation: function() {
+export class Result extends Component {
+  constructor(props) {
+    super(props);
+
+    this.haveMatchingLocation = this.haveMatchingLocation.bind(this);
+  }
+
+  haveMatchingLocation() {
     if (!this.props.place_id) {
       return false;
-    };
+    }
     return this.props.place_id === this.props.params.place_id;
-  },
-  componentDidMount: function() {
+  }
+
+  componentDidMount() {
     if (!this.haveMatchingLocation()) {
       this.props.updateRestaurantDetails(this.props.params.place_id);
     }
-  },
-  render: function() {
-    if (this.haveMatchingLocation()) {
-      return (
-        <div className="result">
-          <Map place_id={this.props.place_id}></Map>
-          <IndexLink to="/">Back</IndexLink>
-        </div>);
-    } else {
-      return (<div>Retreiving Data</div>);
-    }
   }
-});
+
+  render() {
+    return (<div className="result">
+      <DefaultLayout>
+        {(() => {
+          if (this.haveMatchingLocation()) {
+            return (<ResultDetails
+              place_id={this.props.place_id}
+              name={this.props.name}
+              rating={this.props.rating}
+              vicinity={this.props.vicinity}
+            />);
+          } else {
+            return (<ResultSpinner />);
+          }
+        })()}
+      </DefaultLayout>
+    </div>);
+  }
+}
 
 function mapStateToProps(state) {
   return {

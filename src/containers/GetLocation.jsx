@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 import {updateLocation, updateGeolocationSupport} from '../actions/locationActions';
 import {updateRestaurant} from '../actions/restaurantActions';
 
-import DefaultLayout from './../components/default_layout';
+import DefaultLayout from './../components/DefaultLayout';
 import NoSupport from './../components/GetLocation/NoSupport';
 import LocationStatus from './../components/GetLocation/LocationStatus';
 import RestaurantStatus from './../components/GetLocation/RestaurantStatus';

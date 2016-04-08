@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-export const App = React.createClass({
-  render: function() {
+export class App extends Component {
+  render() {
     return this.props.children;
   }
-});
+}
 
 function mapStateToProps(state) {
   return state;

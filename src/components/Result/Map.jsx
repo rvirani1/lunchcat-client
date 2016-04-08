@@ -1,18 +1,26 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-export default React.createClass({
-  mapSrcUrl: function() {
+export default class Map extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.mapSrcUrl = this.mapSrcUrl.bind(this);
+  }
+  
+  mapSrcUrl() {
     return "https://www.google.com/maps/embed/v1/place?" +
         "key=" + GOOGLE_API_KEY + "&" +
         "q=place_id:" + this.props.place_id
-  },
-  render: function() {
+  }
+  
+  render() {
     return (<iframe
+      className="center-margin"
       width="450"
       height="250"
       frameBorder="0"
       src={this.mapSrcUrl()}
       ></iframe>);
   }
-});
+}
 

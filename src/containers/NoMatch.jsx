@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-export default React.createClass({
-  render: function() {
+export default class NoMatch extends Component {
+  render() {
     return <h2>404</h2>;
   }
-});
+}
 

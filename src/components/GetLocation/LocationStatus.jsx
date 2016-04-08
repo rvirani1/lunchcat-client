@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-export default React.createClass({
-  status: function() {
+export default class LocationStatus extends Component {
+  constructor(props) {
+    super(props);
+
+    this.status = this.status.bind(this);
+  }
+
+  status() {
     if (this.props.isFetching) {
       return "Acquiring Location";
     } else if (this.props.latitude && this.props.longitude) {
@@ -11,10 +17,11 @@ export default React.createClass({
     } else {
       return "";
     }
-  },
-render: function() {
+  }
+
+  render() {
     return (<div className="location-status">
       <p className="center-text">{this.status()}</p>
     </div>)
   }
-});
+}

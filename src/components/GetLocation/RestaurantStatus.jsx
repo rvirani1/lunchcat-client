@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-export default React.createClass({
-  status: function() {
+export default class RestaurantStatus extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.status = this.status.bind(this);
+  }
+  
+  status() {
     if (this.props.error) {
       return "Restaurant Error: " + this.props.error;
     } else if (this.props.isFetching) {
@@ -9,10 +15,11 @@ export default React.createClass({
     } else {
       return "";
     }
-  },
-  render: function() {
+  }
+  
+  render() {
     return (<div className="restaurant-status">
       <p className="center-text">{this.status()}</p>
     </div>)
   }
-});
+}
