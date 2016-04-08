@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 export default class LocationStatus extends Component {
   constructor(props) {
@@ -25,3 +25,10 @@ export default class LocationStatus extends Component {
     </div>)
   }
 }
+
+LocationStatus.propTypes = {
+  isFetching: PropTypes.bool,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+  error: PropTypes.string
+};

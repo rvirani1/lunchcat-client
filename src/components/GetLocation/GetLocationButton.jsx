@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 
 export default class GetLocationButton extends Component {
@@ -38,3 +38,11 @@ export default class GetLocationButton extends Component {
     </div>);
   }
 }
+
+GetLocationButton.propTypes = {
+  isFetching: PropTypes.bool,
+  locationFound: PropTypes.bool,
+  place_id: PropTypes.string,
+  updateLocation: PropTypes.func.isRequired,
+  updateRestaurant: PropTypes.func.isRequired
+};
