@@ -5,6 +5,7 @@ import {updateRestaurantDetails} from '../actions/restaurantActions';
 import DefaultLayout from './../components/DefaultLayout'
 import ResultDetails from './../components/Result/ResultDetails';
 import ResultSpinner from './../components/Result/ResultSpinner';
+import ResultError from './../components/Result/ResultError';
 
 export class Result extends Component {
   constructor(props) {
@@ -37,6 +38,8 @@ export class Result extends Component {
               rating={this.props.rating}
               vicinity={this.props.vicinity}
             />);
+          } else if (this.props.error) {
+            return (<ResultError error={this.props.error}/>);
           } else {
             return (<ResultSpinner />);
           }
