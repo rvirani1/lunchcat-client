@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
+import {reset} from 'redux-form';
 import {updateLocation, updateGeolocationSupport} from '../actions/locationActions';
-import {updateRestaurant} from '../actions/restaurantActions';
+import {set_max_distance, updateRestaurant} from '../actions/restaurantActions';
 
 import DefaultLayout from './../components/DefaultLayout';
 import NoSupport from './../components/GetLocation/NoSupport';
@@ -10,28 +11,60 @@ import LocationStatus from './../components/GetLocation/LocationStatus';
 import RestaurantStatus from './../components/GetLocation/RestaurantStatus';
 import GetLocationButton from './../components/GetLocation/GetLocationButton';
 import GetLocationBanner from './../components/GetLocation/GetLocationBanner';
+import DistanceMilesForm from './../components/GetLocation/DistanceMilesForm';
 
-export const GetLocation = React.createClass({
-  componentWillMount: function() {
+export class GetLocation extends Component {
+  constructor(props) {
+    super(props);
+
+    this.isFetching = this.isFetching.bind(this);
+    this.locationFound = this.locationFound.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.navigateToResult = this.navigateToResult.bind(this);
+  }
+
+  componentWillMount() {
     this.props.updateGeolocationSupport();
-  },
-  isFetching: function() {
+  }
+
+  isFetching() {
     return (this.props.isFetchingLocation || this.props.isFetchingRestaurant);
-  },
-  locationFound: function() {
+  }
+
+  locationFound() {
     return (this.props.latitude && this.props.longitude) !== null;
-  },
-  render: function() {
+  }
+
+  handleSubmit() {
+    this.refs.distanceMilesForm.submit();
+  }
+
+  onSubmit(data) {
+    var meters = Number(data.miles) * 1609.34;
+    this.props.set_max_distance(meters);
+    this.props.updateLocation()
+      .then(this.props.updateRestaurant)
+      .then(this.navigateToResult);
+  }
+
+  navigateToResult() {
+    browserHistory.push('/result/' + this.props.locationDetails.place_id);
+  }
+
+  render() {
     if (this.props.geolocation_support) {
       return (<div className="get-location">
           <DefaultLayout>
             <GetLocationBanner />
+            <DistanceMilesForm
+              ref="distanceMilesForm"
+              onSubmit={this.onSubmit}
+            />
             <GetLocationButton
               isFetching={this.isFetching()}
               locationFound={this.locationFound()}
-              updateLocation={this.props.updateLocation}
-              updateRestaurant={this.props.updateRestaurant}
-              place_id={this.props.locationDetails.place_id}
+              handleSubmit={this.handleSubmit}
             />
             <LocationStatus
               isFetching={this.props.isFetchingLocation}
@@ -46,10 +79,10 @@ export const GetLocation = React.createClass({
           </DefaultLayout>
         </div>)
     } else {
-      return <NoSupport></NoSupport>
+      return <NoSupport />
     }
   }
-});
+}
 
 function mapStateToProps(state) {
   return {
@@ -66,6 +99,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps() {
   return {
+    set_max_distance: set_max_distance,
     updateLocation: updateLocation,
     updateRestaurant: updateRestaurant,
     updateGeolocationSupport: updateGeolocationSupport
