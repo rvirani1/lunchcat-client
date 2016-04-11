@@ -36,6 +36,7 @@ const store = configureStore({
   currentRestaurant: {
     isFetching: false,
     error: null,
+    max_distance: null,
     locationDetails: {}
   }
 });

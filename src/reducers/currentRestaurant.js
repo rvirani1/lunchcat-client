@@ -6,6 +6,10 @@ const initialState = {
 
 export function currentRestaurant(state = initialState, action) {
   switch (action.type) {
+    case 'SET_MAX_DISTANCE':
+      var newState = Object.assign({}, state);
+      newState.max_distance = action.max_distance;
+      return Object.assign({}, state, newState);
     case 'REQUEST_RESTAURANT':
       var newState = Object.assign({}, state);
       newState.isFetching = true;

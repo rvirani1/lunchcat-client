@@ -24,6 +24,7 @@ export default function configureStore(initialState) {
 //   },
 //   currentRestaurant: {
 //     isFetching: false, // boolean
+//     max_distance: null //number in miles
 //     error: "", // string, only populated if there is an error
 //     locationDetails: {
 //       // details only populated on success

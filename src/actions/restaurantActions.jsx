@@ -1,17 +1,18 @@
 import $ from 'jquery';
 
+export const SET_MAX_DISTANCE = 'SET_MAX_DISTANCE';
 export const REQUEST_RESTAURANT = 'REQUEST_RESTAURANT';
 export const RECEIVE_RESTAURANT = 'RECEIVE_RESTAURANT';
 export const RECEIVE_RESTAURANT_ERROR = 'RECEIVE_RESTAURANT_ERROR';
 export const CLEAR_RESTAURANT = 'CLEAR_RESTAURANT';
 
-function google_random_restaurant(lat, long) {
+function google_random_restaurant(lat, long, max_dist) {
   return new Promise(function(resolve, reject) {
     $script.ready('google_loader', function() {
       var user_loc = new google.maps.LatLng(lat, long);
       var request = {
         location: user_loc,
-        radius: '800',
+        radius: max_dist,
         types: ['restaurant']
       };
       var map = new google.maps.Map(document.getElementById('hidden'), {}); // Required by Google JS Library
@@ -28,12 +29,21 @@ function google_random_restaurant(lat, long) {
   });
 }
 
+export function set_max_distance(max_distance) {
+  return {
+    type: SET_MAX_DISTANCE,
+    max_distance: max_distance
+  }
+}
+
 export function updateRestaurant() {
   return function(dispatch, getState) {
     dispatch(requestRestaurant());
     var lat = getState().currentLocation.latitude;
     var long = getState().currentLocation.longitude;
-    return google_random_restaurant(lat, long)
+    var max_distance = getState().currentRestaurant.max_distance;
+
+    return google_random_restaurant(lat, long, max_distance)
       .then(function(result) {
         dispatch(receiveRestaurant(result));
       }, function(error) {
