@@ -12,7 +12,7 @@ function google_random_restaurant(lat, long, max_dist) {
       var user_loc = new google.maps.LatLng(lat, long);
       var request = {
         location: user_loc,
-        radius: max_dist,
+        radius: max_dist.toString(),
         types: ['restaurant']
       };
       var map = new google.maps.Map(document.getElementById('hidden'), {}); // Required by Google JS Library
@@ -39,9 +39,9 @@ export function set_max_distance(max_distance) {
 export function updateRestaurant() {
   return function(dispatch, getState) {
     dispatch(requestRestaurant());
-    var lat = getState().currentLocation.latitude;
-    var long = getState().currentLocation.longitude;
-    var max_distance = getState().currentRestaurant.max_distance;
+    var lat = getState().getIn(['currentLocation', 'latitude']);
+    var long = getState().getIn(['currentLocation', 'longitude']);
+    var max_distance = getState().getIn(['currentRestaurant', 'max_distance']);
 
     return google_random_restaurant(lat, long, max_distance)
       .then(function(result) {

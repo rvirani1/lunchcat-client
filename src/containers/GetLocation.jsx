@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {Link, browserHistory} from 'react-router';
 import {reset} from 'redux-form';
+import {clearCurrent} from '../actions/currentActions';
 import {updateLocation, updateGeolocationSupport} from '../actions/locationActions';
 import {set_max_distance, updateRestaurant} from '../actions/restaurantActions';
 
@@ -25,6 +26,7 @@ export class GetLocation extends Component {
   }
 
   componentWillMount() {
+    this.props.clearCurrent();
     this.props.updateGeolocationSupport();
   }
 
@@ -49,7 +51,7 @@ export class GetLocation extends Component {
   }
 
   navigateToResult() {
-    browserHistory.push('/result/' + this.props.locationDetails.place_id);
+    browserHistory.push('/result/' + this.props.locationDetails.get('place_id'));
   }
 
   render() {
@@ -60,6 +62,7 @@ export class GetLocation extends Component {
             <DistanceMilesForm
               ref="distanceMilesForm"
               onSubmit={this.onSubmit}
+              initialValues={{ miles: 1 }}
             />
             <GetLocationButton
               isFetching={this.isFetching()}
@@ -86,19 +89,20 @@ export class GetLocation extends Component {
 
 function mapStateToProps(state) {
   return {
-    geolocation_support: state.currentLocation.geolocation_support,
-    isFetchingLocation: state.currentLocation.isFetching,
-    latitude: state.currentLocation.latitude,
-    longitude: state.currentLocation.longitude,
-    locationError: state.currentLocation.error,
-    isFetchingRestaurant: state.currentRestaurant.isFetching,
-    locationDetails: state.currentRestaurant.locationDetails,
-    restaurantError: state.currentRestaurant.error
+    geolocation_support: state.getIn(['currentLocation', 'geolocation_support']),
+    isFetchingLocation: state.getIn(['currentLocation', 'isFetching']),
+    latitude: state.getIn(['currentLocation', 'latitude']),
+    longitude: state.getIn(['currentLocation', 'longitude']),
+    locationError: state.getIn(['currentLocation', 'error']),
+    isFetchingRestaurant: state.getIn(['currentRestaurant', 'isFetching']),
+    locationDetails: state.getIn(['currentRestaurant', 'locationDetails']),
+    restaurantError: state.getIn(['currentRestaurant', 'error'])
   };
 }
 
 function mapDispatchToProps() {
   return {
+    clearCurrent: clearCurrent,
     set_max_distance: set_max_distance,
     updateLocation: updateLocation,
     updateRestaurant: updateRestaurant,

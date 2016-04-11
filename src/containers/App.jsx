@@ -8,7 +8,7 @@ export class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return state;
+  return state.toJS();
 }
 
 export const AppContainer = connect(mapStateToProps)(App);

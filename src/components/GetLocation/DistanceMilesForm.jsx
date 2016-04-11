@@ -37,5 +37,6 @@ DistanceMilesForm.propTypes = {
 export default reduxForm({
   form: 'distance_miles',
   fields,
+  getFormState: (state, reduxMountPoint) => state.get(reduxMountPoint).toJS(),
   validate
 })(DistanceMilesForm)

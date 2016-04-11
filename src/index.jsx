@@ -4,6 +4,8 @@ import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import {syncHistoryWithStore} from 'react-router-redux';
+import Immutable from 'immutable';
+
 import configureStore from './store/configureStore';
 import {AppContainer} from './containers/App';
 import {ResultContainer} from './containers/Result';
@@ -24,7 +26,7 @@ require("script!../node_modules/scriptjs/dist/script.min.js");
 $script(['https://maps.googleapis.com/maps/api/js?key=' + GOOGLE_API_KEY + '&libraries=places'], 'google_loader');
 
 
-const store = configureStore({
+const store = configureStore(Immutable.fromJS({
   currentLocation: {
     geolocation_support: null,
     isFetching: null,
@@ -39,10 +41,10 @@ const store = configureStore({
     max_distance: null,
     locationDetails: {}
   }
-});
+}));
 
 export function clearCurrentHook(_nextState, _replace) {
-  store.dispatch(clearCurrent())
+  // store.dispatch(clearCurrent())
 }
 
 const routes =
@@ -52,7 +54,9 @@ const routes =
     <Route path="*" component={NoMatch}/>
   </Route>;
 
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState: (state) => state.get('routing').toJS()
+});
 
 ReactDOM.render(
   <Provider store={store}>

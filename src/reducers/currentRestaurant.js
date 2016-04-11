@@ -1,42 +1,44 @@
-const initialState = {
+import Immutable, {Map} from 'immutable';
+
+const initialState = Immutable.fromJS({
   isFetching: false,
   error: null,
   locationDetails: {}
-};
+});
 
 export function currentRestaurant(state = initialState, action) {
   switch (action.type) {
     case 'SET_MAX_DISTANCE':
-      var newState = Object.assign({}, state);
-      newState.max_distance = action.max_distance;
-      return Object.assign({}, state, newState);
+      return state.merge({
+        max_distance: action.max_distance
+      });
     case 'REQUEST_RESTAURANT':
-      var newState = Object.assign({}, state);
-      newState.isFetching = true;
-      newState.error = null;
-      newState.locationDetails = {};
-      return Object.assign({}, state, newState);
+      return state.merge({
+        isFetching: true,
+        error: null,
+        locationDetails: Map()
+      });
     case 'RECEIVE_RESTAURANT':
-      var newState = Object.assign({}, state);
-      newState.isFetching = null;
-      newState.error = null;
-      newState.locationDetails = {
-        place_id: action.place_id,
-        name: action.name,
-        photos: action.photos,
-        rating: action.rating,
-        vicinity: action.vicinity
-      };
-      return Object.assign({}, state, newState);
+      return state.mergeDeep({
+        isFetching: null,
+        error: null,
+        locationDetails: Map({
+          place_id: action.place_id,
+          name: action.name,
+          photos: action.photos,
+          rating: action.rating,
+          vicinity: action.vicinity
+        })
+      });
     case 'RECEIVE_RESTAURANT_ERROR':
-      var newState = Object.assign({}, state);
-      newState.isFetching = null;
-      newState.error = action.status;
-      newState.locationDetails = {};
-      return Object.assign({}, state, newState);
+      return state.merge({
+        isFetching: null,
+        error: action.status,
+        locationDetails: Map()
+      });
     case 'CLEAR_RESTAURANT':
     case 'CLEAR_CURRENT':
-      return Object.assign({}, state, initialState);
+      return state.merge(initialState);
   }
   return state;
 }

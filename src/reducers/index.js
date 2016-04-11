@@ -1,12 +1,14 @@
-import { combineReducers } from 'redux';
-import { currentLocation } from './currentLocation';
-import { currentRestaurant} from './currentRestaurant';
-import {routerReducer} from 'react-router-redux';
+import {combineReducers} from 'redux-immutable';
+import { fromJS } from 'immutable';
+
+import {currentLocation} from './currentLocation';
+import {currentRestaurant} from './currentRestaurant';
+import {routerReducer} from './routerReducer';
 import {reducer as formReducer} from 'redux-form';
 
 export default combineReducers({
+  routing: routerReducer,
   currentLocation,
   currentRestaurant,
-  routing: routerReducer,
-  form: formReducer
+  form: (state, action) => fromJS(formReducer(state, action))
 })

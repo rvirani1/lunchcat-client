@@ -51,12 +51,12 @@ export class Result extends Component {
 
 function mapStateToProps(state) {
   return {
-    isFetching: state.currentRestaurant.isFetching,
-    error: state.currentRestaurant.error,
-    place_id: state.currentRestaurant.locationDetails.place_id,
-    name: state.currentRestaurant.locationDetails.name,
-    rating: state.currentRestaurant.locationDetails.rating,
-    vicinity: state.currentRestaurant.locationDetails.vicinity
+    isFetching: state.getIn(['currentRestaurant', 'isFetching']),
+    error: state.getIn(['currentRestaurant', 'error']),
+    place_id: state.getIn(['currentRestaurant', 'locationDetails', 'place_id']),
+    name: state.getIn(['currentRestaurant', 'locationDetails', 'name']),
+    rating: state.getIn(['currentRestaurant', 'locationDetails', 'rating']),
+    vicinity: state.getIn(['currentRestaurant', 'locationDetails', 'vicinity'])
   };
 }
 
