@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import GetLocationBannerSVG from './GetLocationBannerSVG';
+import Logo from '../Logo';
 
 export default class GetLocationBanner extends Component {
   render() {
     return (<div className="get-location-banner">
       <div className="row">
         <div className="col-xs-4 col-xs-offset-4">
-          <GetLocationBannerSVG />
+          <Logo />
         </div>
         <div className="row">
           <div className="col-xs-12">

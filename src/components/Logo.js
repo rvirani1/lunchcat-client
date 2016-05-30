@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export default class GetLocationBannerSVG extends Component {
+export default class Logo extends Component {
   render() {
     return <svg
       id="Layer_1"
@@ -8,7 +8,7 @@ export default class GetLocationBannerSVG extends Component {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 137.13 120.07"
     >
-      <title>Lunch car</title>
+      <title>Lunch Cat</title>
       <path
         d="M107.82,172.05c20,0,36.37-12.25,36.37-27.28s-16.34-27.28-36.37-27.28-36.37,12.25-36.37,27.28S87.79,172.05,107.82,172.05Z"
         transform="translate(-39.59 -54.53)"

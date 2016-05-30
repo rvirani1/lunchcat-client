@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {IndexLink} from 'react-router';
+import Logo from '../Logo';
 
 import Map from './Map';
 
