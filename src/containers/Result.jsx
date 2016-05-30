@@ -36,7 +36,6 @@ export class Result extends Component {
               place_id={this.props.place_id}
               name={this.props.name}
               rating={this.props.rating}
-              vicinity={this.props.vicinity}
             />);
           } else if (this.props.error) {
             return (<ResultError error={this.props.error}/>);
@@ -56,7 +55,6 @@ function mapStateToProps(state) {
     place_id: state.getIn(['currentRestaurant', 'locationDetails', 'place_id']),
     name: state.getIn(['currentRestaurant', 'locationDetails', 'name']),
     rating: state.getIn(['currentRestaurant', 'locationDetails', 'rating']),
-    vicinity: state.getIn(['currentRestaurant', 'locationDetails', 'vicinity'])
   };
 }
 

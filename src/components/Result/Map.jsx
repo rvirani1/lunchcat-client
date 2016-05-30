@@ -16,8 +16,8 @@ export default class Map extends Component {
   render() {
     return (<iframe
       className="center-margin"
-      width="450"
-      height="250"
+      width="100%"
+      height="300px"
       frameBorder="0"
       src={this.mapSrcUrl()}
       ></iframe>);

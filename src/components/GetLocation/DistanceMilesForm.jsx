@@ -19,14 +19,30 @@ class DistanceMilesForm extends Component {
     return (
       <form>
         <div className="row text-center">
-          <div className="col-md-8 col-md-offset-2">
-            <label className="margin-right">Maximum Distance</label>
-            <input type="number" min="0" className="margin-right" max={max_dist} {...miles} />
-            <label className="label label-danger block">{miles.touched && miles.error && <div>{miles.error}</div>}</label>
+          <label className="label label-default">Maximum Distance</label>
+        </div>
+        <div className="row">
+          <div className="col-xs-12 text-center">
+            <div className="radio">
+              <label className="block">
+                <input type="radio" {...miles} value="1" checked={miles.value === '1'} />
+                1 Mile
+              </label>
+              <label className="block">
+                <input type="radio" {...miles} value="3" checked={miles.value === '3'} />
+                3 Miles
+              </label>
+              <label className="block">
+                <input type="radio" {...miles} value="5" checked={miles.value === '5'} />
+                5 Miles
+              </label>
+            </div>
+            <label className="label label-danger block">
+              {miles.touched && miles.error && <div>{miles.error}</div>}
+            </label>
           </div>
         </div>
-      </form>
-    )
+      </form>)
   }
 }
 
