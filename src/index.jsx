@@ -16,7 +16,7 @@ import {clearCurrent} from './actions/currentActions';
 // Assets
 require('../node_modules/font-awesome/css/font-awesome.min.css');
 require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
-require('../node_modules/bootswatch/spacelab/bootstrap.min.css');
+require('../node_modules/bootswatch/simplex/bootstrap.min.css');
 require('./stylesheets/main.css');
 require('./stylesheets/get-location-banner.css');
 
