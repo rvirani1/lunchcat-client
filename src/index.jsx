@@ -19,6 +19,7 @@ require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
 require('../node_modules/bootswatch/simplex/bootstrap.min.css');
 require('./stylesheets/main.css');
 require('./stylesheets/get-location-banner.css');
+require('./stylesheets/utility.css');
 
 require("script!../node_modules/jquery/dist/jquery.min");
 require("script!../node_modules/bootstrap/dist/js/bootstrap.min");
