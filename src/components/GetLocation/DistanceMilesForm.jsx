@@ -5,9 +5,7 @@ const max_dist = 10;
 
 const validate = function(values) {
   const errors = {};
-  if (!values.miles) {
-    errors.miles = "Required"
-  } else if (values.miles > max_dist) {
+  if (values.miles > max_dist) {
     errors.miles = "Distance must be less than 10 miles"
   } else if (values.miles < 0) {
     errors.miles = "Distance cannot be less than 0"
@@ -20,10 +18,12 @@ class DistanceMilesForm extends Component {
     const { fields: { miles }} = this.props;
     return (
       <form>
-        <div>
-          <label>Miles</label>
-          <input type="number" min="0" max={max_dist} {...miles} />
-          {miles.touched && miles.error && <div>{miles.error}</div>}
+        <div className="row text-center">
+          <div className="col-md-8 col-md-offset-2">
+            <label className="margin-right">Maximum Distance</label>
+            <input type="number" min="0" className="margin-right" max={max_dist} {...miles} />
+            <label className="label label-danger block">{miles.touched && miles.error && <div>{miles.error}</div>}</label>
+          </div>
         </div>
       </form>
     )
@@ -39,4 +39,8 @@ export default reduxForm({
   fields,
   getFormState: (state, reduxMountPoint) => state.get(reduxMountPoint).toJS(),
   validate
-})(DistanceMilesForm)
+}, state => ({
+  initialValues: {
+    miles: 2
+  }
+}))(DistanceMilesForm)

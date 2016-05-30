@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
+import GetLocationBannerSVG from './GetLocationBannerSVG';
 
 export default class GetLocationBanner extends Component {
   render() {
     return (<div className="get-location-banner">
-      <img className="center-margin get-location-banner-logo" src="http://placehold.it/300x300" />
-      <p className="center-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-      <p className="center-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-      <p className="center-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <div className="row">
+        <div className="col-xs-4 col-xs-offset-4">
+          <GetLocationBannerSVG />
+        </div>
+        <div className="row">
+          <div className="col-xs-12">
+            <h1 className="text-center logo-font text-4em">LunchCat</h1>
+          </div>
+        </div>
+      </div>
+      <p className="center-text">Can't pick a place to eat?</p>
+      <p className="center-text">Want to try out a new restaurant?</p>
     </div>);
   }
 }

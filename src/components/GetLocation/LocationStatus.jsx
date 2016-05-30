@@ -3,26 +3,26 @@ import React, {Component, PropTypes} from 'react';
 export default class LocationStatus extends Component {
   constructor(props) {
     super(props);
-
-    this.status = this.status.bind(this);
-  }
-
-  status() {
-    if (this.props.isFetching) {
-      return "Acquiring Location";
-    } else if (this.props.latitude && this.props.longitude) {
-      return "Found Location";
-    } else if (this.props.error) {
-      return "Location Error: " + this.props.error;
-    } else {
-      return "";
-    }
   }
 
   render() {
-    return (<div className="location-status">
-      <p className="center-text">{this.status()}</p>
-    </div>)
+    return (<div className="location-status">{(() => {
+      if (this.props.isFetching) {
+        return <div className="alert alert-info">
+          <h4 className="center-text">Acquiring Location</h4>
+        </div>;
+      } else if (this.props.latitude && this.props.longitude) {
+        return <div className="alert alert-success">
+          <h4 className="center-text">Found Location</h4>
+        </div>;
+      } else if (this.props.error) {
+        return <div className="alert alert-danger">
+          <h4 className="center-text">Location Error</h4>
+        </div>
+      } else {
+        return "";
+      }
+    })()}</div>)
   }
 }
 

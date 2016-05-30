@@ -11,7 +11,7 @@ export default class GetLocationButton extends Component {
     if (this.props.isFetching) {
       return <i className="fa fa-spinner fa-pulse"></i>
     } else {
-      return <p>Get Location</p>
+      return <div>Get Location</div>
     }
   }
 
@@ -19,10 +19,12 @@ export default class GetLocationButton extends Component {
   render() {
     return (<div className="get-location-button">
       <button
-        className="center-margin"
+        className="btn-success center"
         onClick={this.props.handleSubmit}
         disabled={this.props.locationFound} >
-        {this.buttonContents()}
+        <div className="text-2em">
+          {this.buttonContents()}
+        </div>
       </button>
     </div>);
   }

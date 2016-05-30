@@ -43,7 +43,8 @@ export class GetLocation extends Component {
   }
 
   onSubmit(data) {
-    var meters = Number(data.miles) * 1609.34;
+    var miles = data.miles === "" ? 5 : data.miles;
+    var meters = Number(miles) * 1609.34;
     this.props.set_max_distance(meters);
     this.props.updateLocation()
       .then(this.props.updateRestaurant)
@@ -62,8 +63,8 @@ export class GetLocation extends Component {
             <DistanceMilesForm
               ref="distanceMilesForm"
               onSubmit={this.onSubmit}
-              initialValues={{ miles: 1 }}
             />
+            <br />
             <GetLocationButton
               isFetching={this.isFetching()}
               locationFound={this.locationFound()}
