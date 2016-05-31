@@ -6,13 +6,13 @@ import {clearCurrent} from '../actions/currentActions';
 import {updateLocation, updateGeolocationSupport} from '../actions/locationActions';
 import {set_max_distance, updateRestaurant} from '../actions/restaurantActions';
 
-import DefaultLayout from './../components/DefaultLayout';
-import NoSupport from './../components/GetLocation/NoSupport';
-import LocationStatus from './../components/GetLocation/LocationStatus';
-import RestaurantStatus from './../components/GetLocation/RestaurantStatus';
-import GetLocationButton from './../components/GetLocation/GetLocationButton';
-import GetLocationBanner from './../components/GetLocation/GetLocationBanner';
-import DistanceMilesForm from './../components/GetLocation/DistanceMilesForm';
+import DefaultLayout from '../components/DefaultLayout';
+import NoSupport from '../components/GetLocation/NoSupport';
+import LocationStatus from '../components/GetLocation/LocationStatus';
+import RestaurantStatus from '../components/GetLocation/RestaurantStatus';
+import GetLocationButton from '../components/GetLocation/GetLocationButton';
+import GetLocationBanner from '../components/GetLocation/GetLocationBanner';
+import DistanceMilesForm from '../components/GetLocation/DistanceMilesForm';
 
 export class GetLocation extends Component {
   constructor(props) {

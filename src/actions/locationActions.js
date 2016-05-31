@@ -1,4 +1,4 @@
-import {updateRestaurant} from './restaurantActions.jsx';
+import {updateRestaurant} from './restaurantActions.js';
 
 export const UPDATE_GEOLOCATION_SUPPORT = 'UPDATE_GEOLOCATION_SUPPORT';
 export const REQUEST_LOCATION = 'REQUEST_LOCATION';
