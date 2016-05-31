@@ -1,3 +1,4 @@
+aws.json
 .nvmrc
 config/development.js
 config/production.js
